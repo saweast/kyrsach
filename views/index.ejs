@@ -5,7 +5,29 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  <header>
+    <div class="logo">Logo</div>
+    <div class="nav">
+      <ul class="main-nav">
+        <li><a href="/">Main</a></li>
+        <li><a href="/admin">Admin</a></li>
+      </ul>
+    </div>
+    <div class="log">
+      <input type="text" placeholder="enter login">
+      <input type="password" placeholder="enter password">
+      <input type="submit" value="Sign in">
+      <p><a href="/signUp">Sign up</a></p>
+    </div>
+  </header>
+    <section>
+      <h1>Main text</h1>
+      <p>Some text here</p>
+    </section>
+  <footer>
+    <div class="copyright">
+      <p>&copy TeaDrinker 2015 KhAI</p>
+    </div>
+  </footer>
   </body>
 </html>

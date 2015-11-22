@@ -6,10 +6,50 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 
 var app = express();
 
+//session
+var mysql      = require('mysql');
+var session = require('express-session');
+var SessionStore = require('express-mysql-session');
+
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'VLtest'
+});
+
+var sessionStore = new SessionStore({
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'VLtest',
+    schema: {
+        tableName: 'session_test',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires_column_name',
+            data: 'data_column_name'
+        }
+    }
+}, connection);
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true
+}));
+if (sessionStore) console.log(sessionStore);
+//app.use(function (req, res, next) {
+//    req.sessionStore['name'] = 'Ivan';
+//    console.log(req.sessionStore);
+//    next();
+//});
+//end session
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,7 +63,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
+app.get('/admin', function (req, res, next) {
+    res.send('GET request to admin');
+});
+app.get('/signUp', function (req, res, next) {
+    res.send('GET request to signUp');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

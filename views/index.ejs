@@ -3,6 +3,8 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   </head>
   <body>
   <header>
@@ -14,10 +16,14 @@
       </ul>
     </div>
     <div class="log">
-      <input type="text" placeholder="enter login">
-      <input type="password" placeholder="enter password">
-      <input type="submit" value="Sign in">
-      <p><a href="/signUp">Sign up</a></p>
+      <form action="" method="post">
+        <input id="lgn" type="text" placeholder="enter login">
+        <input id="pwd" type="password" placeholder="enter password">
+        <input id="smt" type="submit" value="Sign in">
+        <p>
+          <a href="/signUp">Sign up</a>
+        </p>
+      </form>
     </div>
   </header>
     <section>
@@ -29,5 +35,28 @@
       <p>&copy TeaDrinker 2015 KhAI</p>
     </div>
   </footer>
+  <script>
+    $('#smt').click(function() {
+      $.ajax({
+        url: "/",
+        type: "POST",
+        dataType: "json",
+        data: {
+          login: $('#lgn').val(),
+          password: $('#pwd').val()
+        },
+        contentType: "application/json",
+        cache: false,
+        timeout: 1000,
+        success: function(data) {
+          console.log(data);
+          console.log('process sucess');
+        },
+        error: function() {
+          console.log('process error');
+        }
+      });
+    });
+  </script>
   </body>
 </html>

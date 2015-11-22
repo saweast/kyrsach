@@ -71,6 +71,11 @@ app.get('/signUp', function (req, res, next) {
     res.send('GET request to signUp');
 });
 
+
+app.post('/', function(req, res, next) {
+    console.log(req.body.login);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

@@ -43,7 +43,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-if (sessionStore) console.log(sessionStore);
+//if (sessionStore) console.log(sessionStore);
 //app.use(function (req, res, next) {
 //    req.sessionStore['name'] = 'Ivan';
 //    console.log(req.sessionStore);
@@ -72,8 +72,12 @@ app.get('/signUp', function (req, res, next) {
 });
 
 
-app.post('/', function(req, res, next) {
-    console.log(req.body.login);
+app.post('/index', function (req, res){
+
+    console.log(req.body);
+    console.log('req received');
+    res.redirect('/');
+
 });
 
 // catch 404 and forward to error handler

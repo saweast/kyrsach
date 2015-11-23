@@ -16,14 +16,14 @@
       </ul>
     </div>
     <div class="log">
-      <form action="" method="post">
-        <input id="lgn" type="text" placeholder="enter login">
-        <input id="pwd" type="password" placeholder="enter password">
-        <input id="smt" type="submit" value="Sign in">
-        <p>
-          <a href="/signUp">Sign up</a>
-        </p>
-      </form>
+
+      <input id="lgn" type="text" placeholder="enter login">
+      <input id="pwd" type="password" placeholder="enter password">
+      <input id="smt" type="submit" value="Sign in">
+      <p>
+        <a href="/signUp">Sign up</a>
+      </p>
+
     </div>
   </header>
     <section>
@@ -38,24 +38,17 @@
   <script>
     $('#smt').click(function() {
       $.ajax({
-        url: "/",
-        type: "POST",
-        dataType: "json",
-        data: {
-          login: $('#lgn').val(),
-          password: $('#pwd').val()
-        },
-        contentType: "application/json",
+        url: '/index',
+        type: 'POST',
         cache: false,
-        timeout: 1000,
-        success: function(data) {
-          console.log(data);
-          console.log('process sucess');
-        },
-        error: function() {
-          console.log('process error');
+        data: { login: $('#lgn').val(), password: $('#pwd').val() },
+        success: function(data){
+          alert('Success!')
         }
-      });
+        , error: function(jqXHR, textStatus, err){
+          alert('text status '+textStatus+', err '+err)
+        }
+      })
     });
   </script>
   </body>

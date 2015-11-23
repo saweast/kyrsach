@@ -36,13 +36,13 @@ var sessionStore = new SessionStore({
         }
     }
 }, connection);
-app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
-    store: sessionStore,
-    resave: true,
-    saveUninitialized: true
-}));
+//app.use(session({
+//    key: 'session_cookie_name',
+//    secret: 'session_cookie_secret',
+//    store: sessionStore,
+//    resave: true,
+//    saveUninitialized: true
+//}));
 //if (sessionStore) console.log(sessionStore);
 //app.use(function (req, res, next) {
 //    req.sessionStore['name'] = 'Ivan';
@@ -71,11 +71,31 @@ app.get('/signUp', function (req, res, next) {
     res.send('GET request to signUp');
 });
 
-
+connection.connect();
 app.post('/index', function (req, res){
 
-    console.log(req.body);
-    console.log('req received');
+    var login = req.body.login;
+    var password = req.body.password;
+
+    connection.query('SELECT * FROM `user`', function(err, rows, fields) {
+        if (err) throw err;
+        for (key in rows) {
+            if (rows[key].login == login) {
+                if (rows[key].pwd == password) {
+                    session({
+                        key: 'session_cookie_name',
+                        secret: 'session_cookie_secret',
+                        store: sessionStore,
+                        resave: true,
+                        saveUninitialized: true
+                    });
+                    if (sessionStore) console.log('Session success');
+                    console.log('Login success');
+                }
+            }
+        }
+    });
+
     res.redirect('/');
 
 });

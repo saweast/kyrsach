@@ -43,10 +43,12 @@
         cache: false,
         data: { login: $('#lgn').val(), password: $('#pwd').val() },
         success: function(data){
-          alert('Success!')
-        }
-        , error: function(jqXHR, textStatus, err){
-          alert('text status '+textStatus+', err '+err)
+          console.log('Success!');
+          $('#lgn').val('');
+          $('#pwd').val('');
+        },
+        error: function(jqXHR, textStatus, err){
+          console.log('text status '+textStatus+', err '+err)
         }
       })
     });

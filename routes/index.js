@@ -18,7 +18,10 @@ indx.use(cookieParser());
 /* GET home page. */
 router.get('/', function(req, res) {
   console.log('load main page: ' + req.cookies.isLogged);
-  res.render('index', {title: 'Express', isLogged: req.cookies.isLogged});
+  connection.query('SELECT * FROM `offenders`', function(err, rows) {
+    if (err) throw err;
+    res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
+  });
 });
 router.post('/', function(req, res) {
   var login = req.body.login;

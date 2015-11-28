@@ -59,10 +59,8 @@
             updatedCookie += "=" + propValue;
           }
         }
-
         document.cookie = updatedCookie;
       }
-
       $('#submit').click(function() {
         $.ajax({
           url: '/',
@@ -70,7 +68,7 @@
           cache: false,
           data: { login: $('#login').val(), password: $('#password').val() },
           success: function(data){
-            alert('Success!');
+//            alert('Success!');
             $('#login').val('');
             $('#password').val('');
             window.location.reload();
@@ -89,7 +87,7 @@
             window.location.reload();
           },
           error: function () {
-            alert('NO!')
+//            alert('NO!')
           }
         });
       });

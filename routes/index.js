@@ -34,6 +34,7 @@ router.post('/', function(req, res) {
         }
       }
     }
+    res.end('Access denied');
   });
 });
 router.post('/logout', function(req, res) {

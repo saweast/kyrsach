@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title%></title>
+    <title>Small preview</title>
+    <link rel='stylesheet' href='/stylesheets/normalize.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <meta charset="utf-8">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %> <%= name %></p>
+    <header>
+      <div class="logo"><a href="/"><img src="/images/logo.png" alt=""></a></div>
+      <div class="nav">
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li><a href="/offender">Таблица нарушителей</a></li>
+        </ul>
+      </div>
+      <div class="log">
+        <% if (isLogged != 1) {%>
+        <form action="" method="post">
+          <input type="text" placeholder="Логин" name="login" id="login">
+          <input type="password" placeholder="Пароль" name="password" id="password">
+          <input type="submit" value="Подтвердить" id="submit">
+        </form>
+        <%} else if (isLogged == 1){%>
+        <form action="" method="post">
+          <input type="button" value="Выйти" id="logout">
+        </form>
+        <% } %>
+      </div>
+    </header>
+
+    <script>
+
+
+      $('#submit').click(function() {
+        $.ajax({
+          url: '/',
+          type: 'POST',
+          cache: false,
+          data: { login: $('#login').val(), password: $('#password').val() },
+          success: function(data){
+            alert('Success!');
+            $('#login').val('');
+            $('#password').val('');
+          },
+          error: function(jqXHR, textStatus, err){
+            console.log('text status '+textStatus+', err '+err)
+          }
+        })
+      });
+      $('#logout').click(function() {
+        $.ajax({
+          url: '/logout',
+          type: 'POST',
+          success: function (data) {
+            alert('logout!');
+          },
+          error: function (jqXHR, textStatus, err) {
+            console.log('text status ' + textStatus + ', err ' + err)
+          }
+        })
+      });
+    </script>
   </body>
 </html>

@@ -6,9 +6,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+    <link type="text/css" href="/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link type="text/css" href="/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" />
+    <script src="/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+
+
     <meta charset="utf-8">
   </head>
   <body>
+
     <header>
       <div class="logo"><a href="/"><img src="/images/logo.png" alt=""></a></div>
       <div class="nav">
@@ -36,40 +44,100 @@
       <% for (key in list) {%>
         <div class="row">
         <% for (key1 in list[key]) {%>
-          <div class="col">
-
           <% if (isLogged != 1) {%>
             <p><%= list[key][key1]%></p>
           <%} else if (isLogged == 1){%>
             <%if (key1 == 'date' || key1 == 5) { %>
             <script>
-              var date = new Date('<%-list[key][key1]%>'),
-                      mm = date.getMonth()+1,
-                      dd = date.getDay(),
-                      yyyy = date.getFullYear();
-              var formDate = mm+'/'+dd+'/'+yyyy;
-              console.log(formDate);
+              function getDate(srt) {
+                var date = new Date(srt),
+                        mm = date.getMonth()+1,
+                        dd = date.getDate(),
+                        yyyy = date.getFullYear();
+                return mm+'/'+dd+'/'+yyyy;
+              }
               var x = document.createElement("INPUT");
-              x.setAttribute("type", "date");
-              x.setAttribute("value", formDate);
-              document.body.appendChild(x);
+              x.setAttribute("type", "text");
+              x.setAttribute("class", "datepicker");
+              x.setAttribute("value", getDate('<%-list[key][key1]%>'));
+              var closestAct = $('div').last('.row');
+              $(x).appendTo(closestAct);
             </script>
             <% continue;}%>
             <textarea><%= list[key][key1] %></textarea>
           <% } %>
-          </div>
 
         <% } %>
+          <% if (isLogged == 1){%>
+          <div class="actions">
+            <button class="edit">edit</button>
+            <button class="remove">remove</button>
+          </div>
+          <% } %>
         </div>
-      <% if (isLogged == 1){%>
-      <div class="actions">
-        <button class="edit">edit</button>
-        <button class="remove">remove</button>
-      </div>
-      <% } %>
+
       <% } %>
     </section>
     <script>
+      $('.actions').click(function(e) {
+        var target = e.target;
+        var closestrow = $(target).closest('.row');
+        var id = $(closestrow).find('textarea')[0];
+        var fullName = $(closestrow).find('textarea')[1];
+        var number = $(closestrow).find('textarea')[2];
+        var block = $(closestrow).find('textarea')[3];
+        var room = $(closestrow).find('textarea')[4];
+        var date = $(closestrow).find('input')[0];
+        var offender = $(closestrow).find('textarea')[5];
+        id = $(id).val();
+        fullName = $(fullName).val();
+        number = $(number).val();
+        block = $(block).val();
+        room = $(room).val();
+        date = $(date).val();
+        offender = $(offender).val();
+        console.log(id + ' ' + fullName + ' ' + number
+                + ' ' + ' ' + block + ' ' + room + ' '
+                + date + ' ' + offender);
+        if (target.className == 'edit') {
+          $.ajax({
+            url: '/update',
+            type: 'POST',
+            cache: false,
+            data: {id: id, fullName: fullName, number: number,
+              block: block, room: room, date: date, offender: offender},
+            success: function(){
+              window.alert('Success!');
+            },
+            error: function(jqXHR, textStatus, err){
+              console.log('text status '+textStatus+', err '+err)
+//              window.location.reload();
+            }
+          });
+        }
+        if (target.className == 'remove') {
+
+          $.ajax({
+            url: '/remove',
+            type: 'POST',
+            cache: false,
+            data: {id: id},
+            success: function(){
+              window.alert('Success!');
+            },
+            error: function(jqXHR, textStatus, err){
+              console.log('text status '+textStatus+', err '+err)
+//              window.location.reload();
+            }
+          });
+        }
+      });
+      $(function(){
+        $.datepicker.setDefaults(
+                $.extend( $.datepicker.regional[ '' ] )
+        );
+        $( '.datepicker' ).datepicker();
+      });
       function setCookie(name, value, options) {
         options = options || {};
 

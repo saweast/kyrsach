@@ -46,5 +46,19 @@ router.post('/logout', function(req, res) {
   //console.log('logout cookie: ' + req.cookies.isLogged);
   res.render('index', {title: 'Express', isLogged: req.cookies.isLogged});
 });
+router.post('/update', function(req, res) {
+  var id = req.body.id;
+  var fullName = req.body.fullName;
+  var number = req.body.number;
+  var block = req.body.block;
+  var room = req.body.room;
+  var date = req.body.date;
+  var offender = req.body.offender;
+  console.log('UPDATED');
+});
+router.post('/remove', function(req, res) {
+  var id = req.body.id;
+  console.log('REMOVED');
+});
 
 module.exports = router;

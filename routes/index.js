@@ -11,13 +11,14 @@ var connection = mysql.createConnection({
   database : 'VLtest'
 });
 connection.connect();
-
+//connection.end();
 indx.use(cookieParser());
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  console.log('load main page: ' + req.cookies.isLogged);
+
+  //console.log('load main page: ' + req.cookies.isLogged);
   connection.query('SELECT * FROM `offenders`', function(err, rows) {
     if (err) throw err;
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
@@ -32,7 +33,7 @@ router.post('/', function(req, res) {
       if (rows[key].login == login) {
         if (rows[key].pwd == password) {
           res.cookie('isLogged', 1, {});
-          console.log('set cookie when authorised ' +req.cookies.isLogged);
+          //console.log('set cookie when authorised ' +req.cookies.isLogged);
           res.render('index', {title: 'Express', isLogged: req.cookies.isLogged});
         }
       }
@@ -42,7 +43,7 @@ router.post('/', function(req, res) {
 });
 router.post('/logout', function(req, res) {
   res.cookie('isLogged', 0, {});
-  console.log('logout cookie: ' + req.cookies.isLogged);
+  //console.log('logout cookie: ' + req.cookies.isLogged);
   res.render('index', {title: 'Express', isLogged: req.cookies.isLogged});
 });
 

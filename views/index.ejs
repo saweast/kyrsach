@@ -33,7 +33,41 @@
       </div>
     </header>
     <section class="offender">
+      <% for (key in list) {%>
+        <div class="row">
+        <% for (key1 in list[key]) {%>
+          <div class="col">
 
+          <% if (isLogged != 1) {%>
+            <p><%= list[key][key1]%></p>
+          <%} else if (isLogged == 1){%>
+            <%if (key1 == 'date' || key1 == 5) { %>
+            <script>
+              var date = new Date('<%-list[key][key1]%>'),
+                      mm = date.getMonth()+1,
+                      dd = date.getDay(),
+                      yyyy = date.getFullYear();
+              var formDate = mm+'/'+dd+'/'+yyyy;
+              console.log(formDate);
+              var x = document.createElement("INPUT");
+              x.setAttribute("type", "date");
+              x.setAttribute("value", formDate);
+              document.body.appendChild(x);
+            </script>
+            <% continue;}%>
+            <textarea><%= list[key][key1] %></textarea>
+          <% } %>
+          </div>
+
+        <% } %>
+        </div>
+      <% if (isLogged == 1){%>
+      <div class="actions">
+        <button class="edit">edit</button>
+        <button class="remove">remove</button>
+      </div>
+      <% } %>
+      <% } %>
     </section>
     <script>
       function setCookie(name, value, options) {
@@ -49,7 +83,6 @@
         if (expires && expires.toUTCString) {
           options.expires = expires.toUTCString();
         }
-
         value = encodeURIComponent(value);
 
         var updatedCookie = name + "=" + value;
@@ -74,11 +107,15 @@
             $('#login').val('');
             $('#password').val('');
             window.location.reload();
+            window.location.reload();
+            window.location.reload();
           },
           error: function(jqXHR, textStatus, err){
             console.log('text status '+textStatus+', err '+err)
+            window.location.reload();
           }
-        })
+        });
+        window.location.reload();
       });
       $('#logout').click(function() {
         $.ajax({
@@ -86,6 +123,8 @@
           type: 'POST',
           cache: false,
           success: function () {
+            window.location.reload();
+            window.location.reload();
             window.location.reload();
           },
           error: function () {

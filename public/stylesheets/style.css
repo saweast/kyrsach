@@ -1,0 +1,11 @@
+.row {
+    display: block;
+    clear: both;
+}
+.col textarea {
+    float:left;
+    width: 14%;
+}
+.actions {
+    display: block;
+}

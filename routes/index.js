@@ -48,17 +48,30 @@ router.post('/logout', function(req, res) {
 });
 router.post('/update', function(req, res) {
   var id = req.body.id;
-  var fullName = req.body.fullName;
+  var fullName = req.body.fullName.toLocaleString();
   var number = req.body.number;
   var block = req.body.block;
   var room = req.body.room;
-  var date = req.body.date;
+  var date = new Date(req.body.date);
+  date = date.toString();
+  console.log(date);
   var offender = req.body.offender;
-  console.log('UPDATED');
+  connection.query("update offenders set id="+id+", fullname='"+fullName+"', number="+number+", block="+block+", room="+room+", date='"+date+"', offender='"+offender+"' where id="+id+"");
+});
+router.post('/insert', function(req, res) {
+  var fullName = req.body.fullName.toLocaleString();
+  var number = req.body.number;
+  var block = req.body.block;
+  var room = req.body.room;
+  var date = new Date(req.body.date);
+  date = date.toString();
+  console.log(date);
+  var offender = req.body.offender;
+  connection.query("insert into offenders (fullName, number, block, room, date, offender) values ('"+fullName+"',"+number+","+block+","+room+",'"+date+"','"+offender+"')");
 });
 router.post('/remove', function(req, res) {
   var id = req.body.id;
-  console.log('REMOVED');
+  connection.query('DELETE FROM `offenders` WHERE `id`='+id+'');
 });
 
 module.exports = router;

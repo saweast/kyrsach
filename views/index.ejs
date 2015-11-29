@@ -41,6 +41,19 @@
       </div>
     </header>
     <section class="offender">
+      <% if (isLogged == 1){%>
+      <div class="row">
+        <textarea></textarea>
+        <textarea></textarea>
+        <textarea></textarea>
+        <textarea></textarea>
+        <input type="text" class="datepicker">
+        <textarea></textarea>
+        <div class="actions">
+          <button class="apply">apply</button>
+        </div>
+      </div>
+      <% } %>
       <% for (key in list) {%>
         <div class="row">
         <% for (key1 in list[key]) {%>
@@ -94,11 +107,12 @@
         number = $(number).val();
         block = $(block).val();
         room = $(room).val();
-        date = $(date).val();
+        date = new Date($(date).val());
+        date = date.toString();
         offender = $(offender).val();
-        console.log(id + ' ' + fullName + ' ' + number
-                + ' ' + ' ' + block + ' ' + room + ' '
-                + date + ' ' + offender);
+//        console.log(id + ' ' + fullName + ' ' + number
+//                + ' ' + ' ' + block + ' ' + room + ' '
+//                + date + ' ' + offender);
         if (target.className == 'edit') {
           $.ajax({
             url: '/update',
@@ -106,7 +120,7 @@
             cache: false,
             data: {id: id, fullName: fullName, number: number,
               block: block, room: room, date: date, offender: offender},
-            success: function(){
+            success: function(data){
               window.alert('Success!');
             },
             error: function(jqXHR, textStatus, err){
@@ -116,13 +130,12 @@
           });
         }
         if (target.className == 'remove') {
-
           $.ajax({
             url: '/remove',
             type: 'POST',
             cache: false,
             data: {id: id},
-            success: function(){
+            success: function(data){
               window.alert('Success!');
             },
             error: function(jqXHR, textStatus, err){
@@ -131,6 +144,36 @@
             }
           });
         }
+        if (target.className == 'apply') {
+          fullName = $(closestrow).find('textarea')[0];
+          number = $(closestrow).find('textarea')[1];
+          block = $(closestrow).find('textarea')[2];
+          room = $(closestrow).find('textarea')[3];
+          date = $(closestrow).find('input')[0];
+          offender = $(closestrow).find('textarea')[4];
+          fullName = $(fullName).val();
+          number = $(number).val();
+          block = $(block).val();
+          room = $(room).val();
+          date = new Date($(date).val());
+          date = date.toString();
+          offender = $(offender).val();
+          $.ajax({
+            url: '/insert',
+            type: 'POST',
+            cache: false,
+            data: {fullName: fullName, number: number,
+              block: block, room: room, date: date, offender: offender},
+            success: function(data){
+              window.alert('Success!');
+            },
+            error: function(jqXHR, textStatus, err){
+              console.log('text status '+textStatus+', err '+err)
+//              window.location.reload();
+            }
+          });
+        }
+        window.location.reload();
       });
       $(function(){
         $.datepicker.setDefaults(

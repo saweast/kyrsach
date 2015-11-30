@@ -21,6 +21,15 @@ router.get('/', function(req, res) {
   //console.log('load main page: ' + req.cookies.isLogged);
   connection.query('SELECT * FROM `offenders`', function(err, rows) {
     if (err) throw err;
+    console.log(rows);
+    res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
+  });
+});
+router.get('/offender', function(req, res) {
+  //console.log('load main page: ' + req.cookies.isLogged);
+  connection.query('SELECT * FROM `offenders`', function(err, rows) {
+    if (err) throw err;
+    console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });

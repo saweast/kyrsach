@@ -55,7 +55,23 @@
         <div class="row">
         <% for (key1 in list[key]) {%>
           <% if (isLogged != 1) {%>
-            <p><%= list[key][key1]%></p>
+            <% if (key1 == 'date' || key1 == 5) { %>
+          <script>
+            function getDate(srt) {
+              var date = new Date(srt),
+                      mm = date.getMonth()+1,
+                      dd = date.getDate(),
+                      yyyy = date.getFullYear();
+              return mm+'/'+dd+'/'+yyyy;
+            }
+            var x = document.createElement('p');
+            x.textContent = getDate('<%= list[key][key1]%>');
+            var closestAct = $('div').last('.row');
+            $(x).appendTo(closestAct);
+          </script>
+            <% } else { %>
+              <p><%= list[key][key1]%></p>
+            <% } %>
           <%} else if (isLogged == 1){%>
             <%if (key1 == 'date' || key1 == 5) { %>
             <script>

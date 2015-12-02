@@ -16,7 +16,7 @@ div.logo {
     width: 100%;
 }
 div.log {
-    padding: 20px 5%;
+    padding: 2% 5%;
     float: right;
     width: 25%;
 }
@@ -29,10 +29,45 @@ div.log {
     text-align: center;
 }
 .log input[type=submit] {
-    width: 50%;
+    width: auto;
     float: right;
     height: 30px;
     text-transform: uppercase;
 }
-
+section.offender {
+    background: yellow;
+    margin-top: 20px;
+    padding: 0 5%;
+}
+div.row {
+    display: block;
+    margin-bottom: 10px;
+    clear: both;
+    margin-right: 5%;
+}
+.row p {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    float: left;
+    padding: 5px;
+}
+.row p:nth-child(1) {
+    display: none;
+}
+.row p:nth-child(2) {
+    width: 250px;
+    word-wrap: break-word;
+    max-width: 250px;
+}
+.row p:nth-child(3),
+.row p:nth-child(4),
+.row p:nth-child(5) {
+    width: 25px;
+    text-align: center;
+    background: #a7dbd8;
+}
+.row p:nth-child(6) {
+    
+}
 

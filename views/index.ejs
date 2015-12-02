@@ -38,6 +38,14 @@
       </div>
     </header>
     <section class="offender">
+      <div class="head">
+        <div class="name">Прізвище Ім’я</div>
+        <div class="num">Гос. від-ки</div>
+        <div class="block">Блок</div>
+        <div class="room">Кімната</div>
+        <div class="hdate">Дата</div>
+        <div class="off">Порушення</div>
+      </div>
       <% if (isLogged == 1){%>
       <div class="row">
         <textarea></textarea>
@@ -66,6 +74,7 @@
             }
             var x = document.createElement('p');
             x.textContent = getDate('<%= list[key][key1]%>');
+            x.setAttribute('class', 'date');
             var closestAct = $('div').last('.row');
             $(x).appendTo(closestAct);
           </script>

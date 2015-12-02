@@ -1,11 +1,38 @@
-.row {
+div.wrapper {
+    background: #c4c4c4;
+    width: 80%;
+    margin: 0 auto;
+}
+header {
+    background: #abef98;
+    width: 100%;
+}
+div.logo {
+    display: inline-block;
+    width: 20%;
+    background: #007fff;
+}
+.logo img {
+    width: 100%;
+}
+div.log {
+    padding: 20px 5%;
+    float: right;
+    width: 25%;
+}
+.log input {
     display: block;
-    clear: both;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
 }
-.col textarea {
-    float:left;
-    width: 14%;
+.log input[type=submit] {
+    width: 50%;
+    float: right;
+    height: 30px;
+    text-transform: uppercase;
 }
-.actions {
-    display: block;
-}
+
+

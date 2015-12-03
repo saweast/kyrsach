@@ -1,19 +1,50 @@
+body {
+    font-family: 'Play', sans-serif;
+
+}
 div.wrapper {
     width: 80%;
     margin: 0 auto;
 }
 header {
+    border-radius: 0 0 15px 15px;
+    background: rgba(79, 180, 228, 0.76);
     width: 100%;
+    padding: 10px;
+    position: relative;
 }
 div.logo {
     display: inline-block;
-    width: 20%;
+    width: 15%;
 }
 .logo img {
     width: 100%;
 }
+div.maintext {
+    position: absolute;
+    top: 25px;
+    display: inline-block;
+    margin-left: 50px;
+    width: 50%;
+}
+div.maintext h1 {
+    font-size: 18px;
+    font-weight: 700;
+}
+.maintext h1,
+.maintext h2,
+.maintext p {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+}
 div.log {
-    padding: 2% 5%;
+    margin-right: 5px;
     float: right;
     width: 25%;
 }
@@ -99,4 +130,77 @@ div.head {
 .head .off {
     width: 19%;
 }
+footer {
+    border-radius: 15px 15px 0 0;
+    background: rgba(79, 180, 228, 0.76);
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+footer li, footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contacts {
+    margin: 0 auto;
+    width: 70%;
+}
+.contacts .tel,
+.contacts .soc {
+    float: left;
+}
+.tel p {
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.tel li {
+    margin-left: 25px;
+    position: relative;
+    margin-bottom: 5px;
+}
 
+.tel li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: url("../images/phone.png") no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    left: -25px;
+}
+
+.soc p {
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.soc li {
+    margin-left: 25px;
+    position: relative;
+    margin-bottom: 5px;
+}
+.soc li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: url("../images/vk.png") no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    left: -25px;
+}
+.clear {
+    clear: both;
+}
+.author p {
+    margin-bottom: 0;
+}
+
+footer .contacts div.soc {
+    float: right;
+}

@@ -103,7 +103,7 @@ div.row {
     min-width: 25px;
     text-align: center;
 }
-.row p.date
+.row p.date,
 .row input.hdate{
     width: 15%;
     min-width: 100px;
@@ -218,8 +218,7 @@ footer .contacts div.soc {
 .row {
     position: relative;
 }
-.row input.datepicker,
-.row p.date {
+.row input.datepicker {
     position: relative;
     top: -15px;
 }
@@ -227,4 +226,14 @@ footer .contacts div.soc {
     float: right;
     margin-bottom: 5px;
     margin-right: 15px;
+}
+textarea, input {
+    text-align: center;
+}
+textarea {
+    height: 2em;
+}
+#logout {
+    height: 2em;
+    margin-top: 25px;
 }

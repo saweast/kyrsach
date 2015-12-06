@@ -33,7 +33,7 @@
         </form>
         <%} else if (isLogged == 1){%>
         <form action="" method="post">
-          <input type="button" value="Выйти" id="logout">
+          <input type="button" value="Вийти" id="logout">
         </form>
         <% } %>
       </div>
@@ -49,13 +49,13 @@
       </div>
       <% if (isLogged == 1){%>
       <div class="row">
-        <textarea>id</textarea>
-        <textarea>name1 name2</textarea>
-        <textarea>25</textarea>
-        <textarea>890</textarea>
-        <textarea>7</textarea>
-        <input type="text" class="datepicker">
-        <textarea>offender</textarea>
+        <textarea></textarea>
+        <textarea placeholder="Прізвище та ім’я"></textarea>
+        <textarea placeholder="Кількість відробіток"></textarea>
+        <textarea placeholder="Блок"></textarea>
+        <textarea placeholder="Кімната"></textarea>
+        <input type="text" class="datepicker" placeholder="Дата порушення">
+        <textarea placeholder="Порушення"></textarea>
         <div class="actions">
           <button class="apply">Додати</button>
         </div>
@@ -107,7 +107,7 @@
         <% } %>
           <% if (isLogged == 1){%>
           <div class="actions">
-            <button class="edit">Редагувати</button>
+            <button class="edit">Змінити</button>
             <button class="remove">Видалити</button>
           </div>
           <% } %>

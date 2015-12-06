@@ -40,11 +40,23 @@
     </header>
     <section class="offender">
       <div class="head">
-        <div class="name">Прізвище Ім’я</div>
-        <div class="num">Гос. від-ки</div>
-        <div class="block">Блок</div>
+        <div class="name">Прізвище Ім’я
+          <button id="nmdown"></button>
+          <button id="nmup"></button>
+        </div>
+        <div class="num">Гос. від-ки
+          <button id="nmbdown"></button>
+          <button id="nmbup"></button>
+        </div>
+        <div class="block">Блок
+          <button id="bdown"></button>
+          <button id="bup"></button>
+        </div>
         <div class="room">Кімната</div>
-        <div class="hdate">Дата</div>
+        <div class="hdate">Дата
+          <button id="ddown"></button>
+          <button id="dup"></button>
+        </div>
         <div class="off">Порушення</div>
       </div>
       <% if (isLogged == 1){%>
@@ -256,6 +268,32 @@
         }
         document.cookie = updatedCookie;
       }
+      $('#nmdown').click(function() {
+        window.location = 'sortnamedown';
+      });
+      $('#nmup').click(function() {
+        window.location = 'sortnameup';
+      });
+      $('#nmbdown').click(function() {
+        window.location = 'sortbynumberdown';
+      });
+      $('#nmbup').click(function() {
+        window.location = 'sortbynumberup';
+      });
+      $('#bdown').click(function() {
+        window.location = 'sortbyblockdown';
+      });
+      $('#bup').click(function() {
+        window.location = 'sortbyblockrup';
+      });
+      $('#ddown').click(function() {
+        window.location = 'sortbydatedown';
+      });
+      $('#dup').click(function() {
+        window.location = 'sortbydateup';
+      });
+
+
       $('#submit').click(function() {
         $.ajax({
           url: '/',

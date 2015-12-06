@@ -1,8 +1,278 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: 'Play', sans-serif;
+
+}
+div.wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+header {
+    border-radius: 0 0 15px 15px;
+    background: rgba(79, 180, 228, 0.76);
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+div.logo {
+    display: inline-block;
+    width: 15%;
+}
+.logo img {
+    width: 100%;
+}
+div.maintext {
+    position: absolute;
+    top: 25px;
+    display: inline-block;
+    margin-left: 50px;
+    width: 50%;
+}
+div.maintext h1 {
+    font-size: 18px;
+    font-weight: 700;
+}
+.maintext h1,
+.maintext h2,
+.maintext p {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 400;
+    text-align: center;
+}
+div.log {
+    margin-right: 5px;
+    float: right;
+    width: 25%;
+}
+.log input {
+    display: block;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.log input[type=submit] {
+    width: auto;
+    float: right;
+    height: 30px;
+    text-transform: uppercase;
+}
+section.offender {
+    margin: 0;
+    padding: 5% 5%;
+}
+div.row {
+    display: block;
+    clear: both;
+    margin: 0 auto 15px auto;
+    width: 90%;
+    border-top: 1px solid black;
+}
+.row p {
+    margin: 0;
+    display: inline-block;
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+}
+.row p:nth-child(1) {
+    display: none;
+}
+.row p:nth-child(2),
+.row textarea:nth-child(2){
+    width: 30%;
+    min-width: 250px;
+    word-wrap: break-word;
+    max-width: 250px;
+}
+.row p:nth-child(3),
+.row textarea:nth-child(3) {
+    width: 10%;
+}
+.row p:nth-child(4),
+.row p:nth-child(5),
+.row textarea:nth-child(4),
+.row textarea:nth-child(5) {
+
+    width: 5%;
+    min-width: 25px;
+    text-align: center;
+}
+.row p.date,
+.row input.hdate{
+    width: 15%;
+    min-width: 100px;
+    text-align: center;
+}
+.row p:last-child {
+    width: 15%;
+    min-width: 75px;
+    text-align: center;
+}
+div.head {
+    width: 90%;
+    margin: 0 auto 35px;
+
+}
+.head div {
+    float: left;
+    padding: 5px 10px;
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+}
+.head .name {
+    min-width: 250px;
+    width: 30%;
+}
+.head .hdate {
+    width: 11%;
+}
+.head .off {
+    width: 19%;
+}
+footer {
+    border-radius: 15px 15px 0 0;
+    background: rgba(79, 180, 228, 0.76);
+    width: 100%;
+    padding: 10px;
+    position: relative;
+}
+footer li, footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contacts {
+    margin: 0 auto;
+    width: 70%;
+}
+.contacts .tel,
+.contacts .soc {
+    float: left;
+}
+.tel p {
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.tel li {
+    margin-left: 25px;
+    position: relative;
+    margin-bottom: 5px;
 }
 
-a {
-  color: #00B7FF;
+.tel li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: url("../images/phone.png") no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    left: -25px;
+}
+
+.soc p {
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.soc li {
+    margin-left: 25px;
+    position: relative;
+    margin-bottom: 5px;
+}
+.soc li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background: url("../images/vk.png") no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    left: -25px;
+}
+.clear {
+    clear: both;
+}
+.author p {
+    margin-bottom: 0;
+}
+
+footer .contacts div.soc {
+    float: right;
+}
+
+/*for admins*/
+.row textarea:nth-child(1) {
+    display: none;
+}
+.row {
+    position: relative;
+}
+.row input.datepicker {
+    position: relative;
+    top: -15px;
+}
+.actions {
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 15px;
+}
+textarea, input {
+    text-align: center;
+}
+textarea {
+    height: 2em;
+}
+#logout {
+    height: 2em;
+    margin-top: 25px;
+}
+.head div {
+    position: relative;
+}
+.sort.down,
+.sort.up {
+    height: 15px;
+    width: 15px;
+    border: none;
+    background: none;
+    background-image: url("../images/down.png");
+    background-size: 100% 100%;
+    position: absolute;
+}
+.sort.up {
+    transform: rotate(180deg);
+}
+div.head {
+    margin-bottom: 50px;
+}
+#nmdown {
+    top: 24px;
+    margin-left: -65px;
+}
+#nmup {
+    top: 24px;
+    margin-left: -50px;
+}
+#nmbdown, #bdown {
+    margin-left: -15px;
+}
+#ddown, #dup {
+    top: 24px;
+}
+#ddown {
+    margin-left: -32px;
+}
+#dup {
+    margin-left: -18px;
 }

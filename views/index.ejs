@@ -3,55 +3,9 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   </head>
   <body>
-  <header>
-    <div class="logo">Logo</div>
-    <div class="nav">
-      <ul class="main-nav">
-        <li><a href="/">Main</a></li>
-        <li><a href="/admin">Admin</a></li>
-      </ul>
-    </div>
-    <div class="log">
-
-      <input id="lgn" type="text" placeholder="enter login">
-      <input id="pwd" type="password" placeholder="enter password">
-      <input id="smt" type="submit" value="Sign in">
-      <p>
-        <a href="/signUp">Sign up</a>
-      </p>
-
-    </div>
-  </header>
-    <section>
-      <h1>Main text</h1>
-      <p>Some text here</p>
-    </section>
-  <footer>
-    <div class="copyright">
-      <p>&copy TeaDrinker 2015 KhAI</p>
-    </div>
-  </footer>
-  <script>
-    $('#smt').click(function() {
-      $.ajax({
-        url: '/index',
-        type: 'POST',
-        cache: false,
-        data: { login: $('#lgn').val(), password: $('#pwd').val() },
-        success: function(data){
-          console.log('Success!');
-          $('#lgn').val('');
-          $('#pwd').val('');
-        },
-        error: function(jqXHR, textStatus, err){
-          console.log('text status '+textStatus+', err '+err)
-        }
-      })
-    });
-  </script>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
   </body>
 </html>

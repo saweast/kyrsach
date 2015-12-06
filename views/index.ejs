@@ -49,14 +49,15 @@
       </div>
       <% if (isLogged == 1){%>
       <div class="row">
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
-        <textarea></textarea>
+        <textarea>id</textarea>
+        <textarea>name1 name2</textarea>
+        <textarea>25</textarea>
+        <textarea>890</textarea>
+        <textarea>7</textarea>
         <input type="text" class="datepicker">
-        <textarea></textarea>
+        <textarea>offender</textarea>
         <div class="actions">
-          <button class="apply">apply</button>
+          <button class="apply">Додати</button>
         </div>
       </div>
       <% } %>
@@ -106,8 +107,8 @@
         <% } %>
           <% if (isLogged == 1){%>
           <div class="actions">
-            <button class="edit">edit</button>
-            <button class="remove">remove</button>
+            <button class="edit">Редагувати</button>
+            <button class="remove">Видалити</button>
           </div>
           <% } %>
         </div>
@@ -143,7 +144,8 @@
         var target = e.target;
         var closestrow = $(target).closest('.row');
         var id = $(closestrow).find('textarea')[0];
-        var fullName = $(closestrow).find('textarea')[1];
+        var fullName;
+        fullName = $(closestrow).find('textarea')[1];
         var number = $(closestrow).find('textarea')[2];
         var block = $(closestrow).find('textarea')[3];
         var room = $(closestrow).find('textarea')[4];
@@ -192,12 +194,12 @@
           });
         }
         if (target.className == 'apply') {
-          fullName = $(closestrow).find('textarea')[0];
-          number = $(closestrow).find('textarea')[1];
-          block = $(closestrow).find('textarea')[2];
-          room = $(closestrow).find('textarea')[3];
+          fullName = $(closestrow).find('textarea')[1];
+          number = $(closestrow).find('textarea')[2];
+          block = $(closestrow).find('textarea')[3];
+          room = $(closestrow).find('textarea')[4];
           date = $(closestrow).find('input')[0];
-          offender = $(closestrow).find('textarea')[4];
+          offender = $(closestrow).find('textarea')[5];
           fullName = $(fullName).val();
           number = $(number).val();
           block = $(block).val();

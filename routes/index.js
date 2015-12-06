@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
   //console.log('load main page: ' + req.cookies.isLogged);
   connection.query('SELECT * FROM `offenders`', function(err, rows) {
     if (err) throw err;
-    console.log(rows);
+    //console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });
@@ -29,7 +29,7 @@ router.get('/offender', function(req, res) {
   //console.log('load main page: ' + req.cookies.isLogged);
   connection.query('SELECT * FROM `offenders`', function(err, rows) {
     if (err) throw err;
-    console.log(rows);
+    //console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });
@@ -63,7 +63,7 @@ router.post('/update', function(req, res) {
   var room = req.body.room;
   var date = new Date(req.body.date);
   date = date.toString();
-  console.log(date);
+  //console.log(date);
   var offender = req.body.offender;
   connection.query("update offenders set id="+id+", fullname='"+fullName+"', number="+number+", block="+block+", room="+room+", date='"+date+"', offender='"+offender+"' where id="+id+"");
 });
@@ -74,9 +74,10 @@ router.post('/insert', function(req, res) {
   var room = req.body.room;
   var date = new Date(req.body.date);
   date = date.toString();
-  console.log(date);
+  //console.log(date);
   var offender = req.body.offender;
-  connection.query("insert into offenders (fullName, number, block, room, date, offender) values ('"+fullName+"',"+number+","+block+","+room+",'"+date+"','"+offender+"')");
+  console.log('я имя:'+fullName+' '+number+' '+block+' '+room+' '+date+' '+offender);
+  connection.query("insert into offenders (fullname, number, block, room, date, offender) values ('"+fullName+"',"+number+","+block+","+room+",'"+date+"','"+offender+"')");
 });
 router.post('/remove', function(req, res) {
   var id = req.body.id;

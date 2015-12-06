@@ -62,7 +62,10 @@ router.post('/update', function(req, res) {
   var block = req.body.block;
   var room = req.body.room;
   var date = new Date(req.body.date);
-  date = date.toString();
+  var day = date.getDate();
+  day += 1;
+  date.setDate(day);
+  date = date.toISOString();
   //console.log(date);
   var offender = req.body.offender;
   connection.query("update offenders set id="+id+", fullname='"+fullName+"', number="+number+", block="+block+", room="+room+", date='"+date+"', offender='"+offender+"' where id="+id+"");
@@ -73,7 +76,14 @@ router.post('/insert', function(req, res) {
   var block = req.body.block;
   var room = req.body.room;
   var date = new Date(req.body.date);
-  date = date.toString();
+  var day = date.getDate();
+  day += 1;
+  date.setDate(day);
+  date = date.toISOString();
+
+  //date.setDate('day');
+
+
   //console.log(date);
   var offender = req.body.offender;
   console.log('я имя:'+fullName+' '+number+' '+block+' '+room+' '+date+' '+offender);

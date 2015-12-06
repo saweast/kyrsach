@@ -237,3 +237,42 @@ textarea {
     height: 2em;
     margin-top: 25px;
 }
+.head div {
+    position: relative;
+}
+.sort.down,
+.sort.up {
+    height: 15px;
+    width: 15px;
+    border: none;
+    background: none;
+    background-image: url("../images/down.png");
+    background-size: 100% 100%;
+    position: absolute;
+}
+.sort.up {
+    transform: rotate(180deg);
+}
+div.head {
+    margin-bottom: 50px;
+}
+#nmdown {
+    top: 24px;
+    margin-left: -65px;
+}
+#nmup {
+    top: 24px;
+    margin-left: -50px;
+}
+#nmbdown, #bdown {
+    margin-left: -15px;
+}
+#ddown, #dup {
+    top: 24px;
+}
+#ddown {
+    margin-left: -32px;
+}
+#dup {
+    margin-left: -18px;
+}

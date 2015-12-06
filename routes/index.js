@@ -122,28 +122,28 @@ router.get('/sortbynumberup', function(req, res) {
   });
 });
 router.get('/sortbyblockdown', function(req, res) {
-  connection.query('SELECT * FROM `offenders` order by block', function(err, rows) {
-    if (err) throw err;
-    //console.log(rows);
-    res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
-  });
-});
-router.get('/sortbyblockrup', function(req, res) {
   connection.query('SELECT * FROM `offenders` order by block desc', function(err, rows) {
     if (err) throw err;
     //console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });
+router.get('/sortbyblockrup', function(req, res) {
+  connection.query('SELECT * FROM `offenders` order by block ', function(err, rows) {
+    if (err) throw err;
+    //console.log(rows);
+    res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
+  });
+});
 router.get('/sortbydatedown', function(req, res) {
-  connection.query('SELECT * FROM `offenders` order by date', function(err, rows) {
+  connection.query('SELECT * FROM `offenders` order by date desc', function(err, rows) {
     if (err) throw err;
     //console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });
 router.get('/sortbydateup', function(req, res) {
-  connection.query('SELECT * FROM `offenders` order by date desc', function(err, rows) {
+  connection.query('SELECT * FROM `offenders` order by date ', function(err, rows) {
     if (err) throw err;
     //console.log(rows);
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});

@@ -62,12 +62,12 @@
       <% if (isLogged == 1){%>
       <div class="row">
         <textarea></textarea>
-        <textarea placeholder="Прізвище та ім’я"></textarea>
-        <textarea placeholder="Кількість відробіток"></textarea>
-        <textarea placeholder="Блок"></textarea>
-        <textarea placeholder="Кімната"></textarea>
-        <input type="text" class="datepicker" placeholder="Дата порушення">
-        <textarea placeholder="Порушення"></textarea>
+        <textarea required placeholder="Прізвище та ім’я"></textarea>
+        <textarea required placeholder="Кількість відробіток"></textarea>
+        <textarea required placeholder="Блок"></textarea>
+        <textarea required placeholder="Кімната"></textarea>
+        <input type="text" class="datepicker" required placeholder="Дата порушення">
+        <textarea required placeholder="Порушення"></textarea>
         <div class="actions">
           <button class="apply">Додати</button>
         </div>
@@ -269,28 +269,28 @@
         document.cookie = updatedCookie;
       }
       $('#nmdown').click(function() {
-        window.location = 'sortnamedown';
+        window.location = 'byName';
       });
       $('#nmup').click(function() {
-        window.location = 'sortnameup';
+        window.location = 'byNameDesc';
       });
       $('#nmbdown').click(function() {
-        window.location = 'sortbynumberdown';
+        window.location = 'byNumber';
       });
       $('#nmbup').click(function() {
-        window.location = 'sortbynumberup';
+        window.location = 'byNumberDesc';
       });
       $('#bdown').click(function() {
-        window.location = 'sortbyblockdown';
+        window.location = 'byBlock';
       });
       $('#bup').click(function() {
-        window.location = 'sortbyblockrup';
+        window.location = 'byBlockDesc';
       });
       $('#ddown').click(function() {
-        window.location = 'sortbydatedown';
+        window.location = 'byDate';
       });
       $('#dup').click(function() {
-        window.location = 'sortbydateup';
+        window.location = 'byDateDesc';
       });
 
 
@@ -304,8 +304,7 @@
 //            alert('Success!');
             $('#login').val('');
             $('#password').val('');
-            window.location.reload();
-            window.location.reload();
+            window.location = '/';
             window.location.reload();
           },
           error: function(jqXHR, textStatus, err){
@@ -321,8 +320,6 @@
           type: 'POST',
           cache: false,
           success: function () {
-            window.location.reload();
-            window.location.reload();
             window.location.reload();
           },
           error: function () {

@@ -30,6 +30,7 @@ router.get('/', function(req, res) {
     }
     connection.query("SELECT * FROM `offenders` WHERE "+search+" LIKE '%"+value+"%'", function(err, rows) {
       if (err) throw err;
+      console.log(rows);
       res.render('index', {isLogged: req.cookies.isLogged, list: rows});
     });
   } else {

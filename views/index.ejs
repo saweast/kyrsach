@@ -43,31 +43,41 @@
         <div class="name">Прізвище Ім’я
           <button class="sort down" id="nmdown"></button>
           <button class="sort up" id="nmup"></button>
-            <input type="text" class="search">
-            <button class="bsearch">Search</button>
+            <div class="search-panel">
+                <input type="text" class="search">
+                <button class="bsearch"></button>
+            </div>
         </div>
         <div class="num">Гос. від-ки
           <button class="sort down" id="nmbdown"></button>
           <button class="sort up" id="nmbup"></button>
-            <input type="text" class="search">
-            <button class="bsearch">Search</button>
+            <div class="search-panel">
+                <input type="text" class="search">
+                <button class="bsearch"></button>
+            </div>
         </div>
         <div class="block">Блок
           <button class="sort down" id="bdown"></button>
           <button class="sort up" id="bup"></button>
-            <input type="text" class="search">
-            <button class="bsearch">Search</button>
+            <div class="search-panel">
+                <input type="text" class="search">
+                <button class="bsearch"></button>
+            </div>
         </div>
         <div class="room">Кімната</div>
         <div class="hdate">Дата
           <button class="sort down" id="ddown"></button>
           <button class="sort up" id="dup"></button>
-            <input type="text" class="search datepicker">
-            <button class="bsearch">Search</button>
+            <div class="search-panel">
+                <input type="text" class="search datepicker">
+                <button class="bsearch"></button>
+            </div>
         </div>
         <div class="off">Порушення
-            <input type="text" class="search">
-            <button class="bsearch">Search</button>
+            <div class="search-panel">
+                <input type="text" class="search">
+                <button class="bsearch"></button>
+            </div>
         </div>
       </div>
       <% if (isLogged == 1){%>
@@ -307,7 +317,8 @@
       $('.bsearch').click(function(e) {
           var target = e.target;
           var input = $(target).prev('.search').val();
-          var div = $(target).closest('div').attr('class');
+          var div = $(target).closest('div');
+          div = div.parent().attr('class');
           var divs = ['name', 'num', 'block', 'hdate', 'off'];
           var colNames = ['fullName', 'number', 'block', 'date', 'offender'];
           for (key in divs) {
@@ -324,6 +335,7 @@
               },
               success: function(data) {
                   console.log('OK!');
+                  window.location = '/?search='+div+'&value='+input;
               },
               error: function(jqXHR, textStatus, err){
                   console.log('text status '+textStatus+', err '+err);

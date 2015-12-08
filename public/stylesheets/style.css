@@ -276,3 +276,46 @@ div.head {
 #dup {
     margin-left: -18px;
 }
+.bsearch {
+    height: 20px;
+    width: 20px;
+    border: none;
+    background: none;
+    background-image: url("../images/search.png");
+    background-position: center;
+    background-size: contain;
+}
+.search {
+    height: 22px;
+    border: 1px solid #92959C;
+    border-radius: 5px;
+    outline: none;
+    width: 80%;
+}
+div.search-panel {
+    margin-top: 15px;
+    width: 100%;
+}
+div.num,
+div.block {
+    margin-left: -14px;
+    width: 78px;
+}
+.num .search,
+.block .search {
+    width: 50%;
+}
+.block #bdown {
+    top: 24px;
+    margin-left: -33px;
+}
+.block #bup {
+    top: 24px;
+    margin-left: -18px;
+}
+.head div.hdate {
+    margin-left: -23px;
+}
+.hdate .search {
+    width: 73%;
+}

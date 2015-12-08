@@ -43,21 +43,32 @@
         <div class="name">Прізвище Ім’я
           <button class="sort down" id="nmdown"></button>
           <button class="sort up" id="nmup"></button>
+            <input type="text" class="search">
+            <button class="bsearch">Search</button>
         </div>
         <div class="num">Гос. від-ки
           <button class="sort down" id="nmbdown"></button>
           <button class="sort up" id="nmbup"></button>
+            <input type="text" class="search">
+            <button class="bsearch">Search</button>
         </div>
         <div class="block">Блок
           <button class="sort down" id="bdown"></button>
           <button class="sort up" id="bup"></button>
+            <input type="text" class="search">
+            <button class="bsearch">Search</button>
         </div>
         <div class="room">Кімната</div>
         <div class="hdate">Дата
           <button class="sort down" id="ddown"></button>
           <button class="sort up" id="dup"></button>
+            <input type="text" class="search datepicker">
+            <button class="bsearch">Search</button>
         </div>
-        <div class="off">Порушення</div>
+        <div class="off">Порушення
+            <input type="text" class="search">
+            <button class="bsearch">Search</button>
+        </div>
       </div>
       <% if (isLogged == 1){%>
       <div class="row">
@@ -293,6 +304,32 @@
         window.location = 'byDateDesc';
       });
 
+      $('.bsearch').click(function(e) {
+          var target = e.target;
+          var input = $(target).prev('.search').val();
+          var div = $(target).closest('div').attr('class');
+          var divs = ['name', 'num', 'block', 'hdate', 'off'];
+          var colNames = ['fullName', 'number', 'block', 'date', 'offender'];
+          for (key in divs) {
+              if (divs[key] == div) {
+                  div = colNames[key];
+              }
+          }
+          $.ajax({
+              url: '/',
+              type: 'get',
+              data: {
+                  search: div,
+                  value: input
+              },
+              success: function(data) {
+                  console.log('OK!');
+              },
+              error: function(jqXHR, textStatus, err){
+                  console.log('text status '+textStatus+', err '+err);
+              }
+          })
+      });
 
       $('#submit').click(function() {
         $.ajax({
@@ -308,7 +345,7 @@
             window.location.reload();
           },
           error: function(jqXHR, textStatus, err){
-            console.log('text status '+textStatus+', err '+err)
+            console.log('text status '+textStatus+', err '+err);
             window.location.reload();
           }
         });

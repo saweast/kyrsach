@@ -3,7 +3,9 @@ var router = express.Router();
 var indx = express();
 var cookieParser = require('cookie-parser');
 var mysql = require('mysql');
-
+var bodyParser = require('body-parser');
+indx.use(bodyParser.json());
+indx.use(bodyParser.urlencoded({ extended: false }));
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -16,14 +18,33 @@ indx.use(cookieParser());
 
 
 /* GET home page. */
-router.get('/', function(req, res) {
 
-  //console.log('load main page: ' + req.cookies.isLogged);
-  connection.query('SELECT * FROM `offenders`', function(err, rows) {
-    if (err) throw err;
-    //console.log(rows);
-    res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
-  });
+router.get('/', function(req, res) {
+  var search = req.query.search,
+      value = req.query.value;
+  value = decodeURI(value);
+  if (search == 'date') {
+    var date = new Date(value);
+    //    day = date.getDate();
+    //day += 1;
+    //date.setDate(day);
+    //date = date.toISOString();
+    var string = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+    value = string;
+  }
+  if (search && value) {
+    //connection.query("SELECT * FROM `offenders` WHERE '"+search+"' LIKE '"+value+"'", function(err, rows) {
+    connection.query("SELECT * FROM `offenders` WHERE "+search+" LIKE '%"+value+"%'", function(err, rows) {
+      if (err) throw err;
+      res.render('index', {isLogged: req.cookies.isLogged, list: rows});
+    });
+  } else {
+    connection.query('SELECT * FROM `offenders`', function(err, rows) {
+      if (err) throw err;
+      res.render('index', {isLogged: req.cookies.isLogged, list: rows});
+
+    });
+  }
 });
 router.get('/offender', function(req, res) {
   //console.log('load main page: ' + req.cookies.isLogged);
@@ -86,6 +107,7 @@ router.post('/insert', function(req, res) {
   //console.log('я имя:'+fullName+' '+number+' '+block+' '+room+' '+date+' '+offender);
   connection.query("insert into offenders (fullname, number, block, room, date, offender) values ('"+fullName+"',"+number+","+block+","+room+",'"+date+"','"+offender+"')");
 });
+
 router.post('/remove', function(req, res) {
   var id = req.body.id;
   connection.query('DELETE FROM `offenders` WHERE `id`='+id+'');
@@ -146,6 +168,5 @@ router.get('/byDateDesc', function(req, res) {
     res.render('index', {title: 'Express', isLogged: req.cookies.isLogged, list: rows});
   });
 });
-
 
 module.exports = router;

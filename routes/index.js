@@ -22,18 +22,12 @@ indx.use(cookieParser());
 router.get('/', function(req, res) {
   var search = req.query.search,
       value = req.query.value;
-  value = decodeURI(value);
-  if (search == 'date') {
-    var date = new Date(value);
-    //    day = date.getDate();
-    //day += 1;
-    //date.setDate(day);
-    //date = date.toISOString();
-    var string = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-    value = string;
-  }
   if (search && value) {
-    //connection.query("SELECT * FROM `offenders` WHERE '"+search+"' LIKE '"+value+"'", function(err, rows) {
+    value = decodeURI(value);
+    if (search == 'date') {
+      var date = new Date(value);
+      value = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+    }
     connection.query("SELECT * FROM `offenders` WHERE "+search+" LIKE '%"+value+"%'", function(err, rows) {
       if (err) throw err;
       res.render('index', {isLogged: req.cookies.isLogged, list: rows});
@@ -42,7 +36,6 @@ router.get('/', function(req, res) {
     connection.query('SELECT * FROM `offenders`', function(err, rows) {
       if (err) throw err;
       res.render('index', {isLogged: req.cookies.isLogged, list: rows});
-
     });
   }
 });
